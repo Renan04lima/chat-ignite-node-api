@@ -1,4 +1,5 @@
 import { CreateUser } from '@/application/services/create.user'
+import { ListUsers } from '@/application/services/list.users'
 import { io } from '@/main/config'
 
 type Request = {
@@ -19,5 +20,10 @@ io.on('connect', socket => {
     })
 
     socket.broadcast.emit('new_users', user)
+  })
+
+  socket.on('get_users', async (cb) => {
+    const users = await new ListUsers().list()
+    cb(users)
   })
 })
