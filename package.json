@@ -1,0 +1,35 @@
+{
+  "name": "chat-ignite-node-api",
+  "version": "0.0.0",
+  "description": "Chat using socket.io based on rocketseat ignite classes",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "start": "node dist/main",
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Renan04lima/chat-ignite-node-api.git"
+  },
+  "author": "Renan Oliveira - renan04lima@outlook.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Renan04lima/chat-ignite-node-api/issues"
+  },
+  "homepage": "https://github.com/Renan04lima/chat-ignite-node-api#readme",
+  "devDependencies": {
+    "@types/module-alias": "^2.0.1",
+    "@types/node": "^17.0.17",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "eslint": "^7.32.0",
+    "eslint-config-standard-with-typescript": "^21.0.1",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "module-alias": "^2.2.2"
+  }
+}
