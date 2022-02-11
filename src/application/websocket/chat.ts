@@ -1,4 +1,7 @@
+import { CreateChatRoom } from '@/application/services/create.chat.room'
 import { CreateUser } from '@/application/services/create.user'
+import { GetChatRoomByUsers } from '@/application/services/get.chat.room.by.users'
+import { GetUserBySocketId } from '@/application/services/get.user.by.socket.id'
 import { ListUsers } from '@/application/services/list.users'
 import { io } from '@/main/config'
 
@@ -25,5 +28,17 @@ io.on('connect', socket => {
   socket.on('get_users', async (cb) => {
     const users = await new ListUsers().list()
     cb(users)
+  })
+
+  socket.on('start_chat', async (data, cb) => {
+    const userLogged = await new GetUserBySocketId().getById(socket.id)
+
+    let room = await new GetChatRoomByUsers().getByUser([userLogged._id, data.idUser])
+
+    if (!room) {
+      room = await new CreateChatRoom().create([userLogged._id, data.idUser])
+    }
+
+    cb(room)
   })
 })
