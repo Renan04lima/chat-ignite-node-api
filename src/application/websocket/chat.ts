@@ -1,8 +1,4 @@
-import { CreateChatRoom } from '@/application/services/create.chat.room'
-import { CreateUser } from '@/application/services/create.user'
-import { GetChatRoomByUsers } from '@/application/services/get.chat.room.by.users'
-import { GetUserBySocketId } from '@/application/services/get.user.by.socket.id'
-import { ListUsers } from '@/application/services/list.users'
+import { CreateChatRoom, CreateUser, GetChatRoomByUsers, GetUserBySocketId, ListUsers } from '@/application/services'
 import { io } from '@/main/config'
 
 type Request = {
