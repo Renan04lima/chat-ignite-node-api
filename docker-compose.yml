@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  mongodb:
+    container_name: mongo_chat
+    image: 'mongo:4'
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodata:/data/mongo
+
+volumes:
+  mongodata:
+    driver: local
