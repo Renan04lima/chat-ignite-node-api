@@ -1,6 +1,13 @@
 import './config/module.alias'
 import { server, io } from '@/main/config'
+import '@/application/websocket/chat'
+import mongoose from 'mongoose'
 
+main().catch(err => console.log('mongodb error', err))
+
+async function main (): Promise<void> {
+  await mongoose.connect('mongodb://localhost:27017/test')
+}
 io.on('connection', (socket) => {
   console.log('a user connected')
   socket.on('disconnect', () => {
