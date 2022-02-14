@@ -1,4 +1,4 @@
-import { CreateChatRoom, CreateUser, GetChatRoomByUsers, GetUserBySocketId, ListUsers, CreateMessage } from '@/application/services'
+import { CreateChatRoom, CreateUser, GetChatRoomByUsers, GetUserBySocketId, ListUsers, CreateMessage, GetMessageByChatRoom } from '@/application/services'
 import { io } from '@/main/config'
 
 type Request = {
@@ -37,8 +37,10 @@ io.on('connect', socket => {
 
     await socket.join(room.idChatRoom)
 
+    const messages = await new GetMessageByChatRoom().getByChatRoom(room.idChatRoom)
+
     // eslint-disable-next-line node/no-callback-literal
-    cb({ room })
+    cb({ room, messages })
   })
 
   socket.on('message', async (data) => {
