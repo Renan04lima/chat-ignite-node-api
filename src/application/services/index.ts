@@ -1,6 +1,7 @@
 export * from './create.chat.room'
 export * from './create.user'
 export * from './get.chat.room.by.users'
+export * from './get.chat.room.by.id'
 export * from './get.user.by.socket.id'
 export * from './list.users'
 export * from './create.message'

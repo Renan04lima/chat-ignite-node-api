@@ -1,4 +1,4 @@
-import { CreateChatRoom, CreateUser, GetChatRoomByUsers, GetUserBySocketId, ListUsers, CreateMessage, GetMessageByChatRoom } from '@/application/services'
+import { CreateChatRoom, CreateUser, GetChatRoomByUsers, GetUserBySocketId, ListUsers, CreateMessage, GetMessageByChatRoom, GetChatRoomById } from '@/application/services'
 import { io } from '@/main/config'
 
 type Request = {
@@ -55,6 +55,13 @@ io.on('connect', socket => {
     io.to(data.idChatRoom).emit('message', {
       message,
       user
+    })
+    const room = await new GetChatRoomById().getById(data.idChatRoom)
+    const userFrom = room.idUsers.find((users: { _id: any }) => String(users._id) !== String(user._id))
+    io.to(userFrom.socket_id).emit('notification', {
+      newMessage: true,
+      roomId: data.idChatRoom,
+      from: user
     })
   })
 })
